@@ -1,3 +1,4 @@
+require 'saorin/server/reel/version'
 require 'saorin/server/base'
 require 'reel'
 
@@ -35,5 +36,3 @@ module Saorin
     register :reel, Reel
   end
 end
-
-require 'saorin/server/reel/version'
