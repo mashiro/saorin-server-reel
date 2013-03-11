@@ -13,12 +13,21 @@ module Saorin
 
       attr_reader :server
 
-      def initialize(handler, options = {}, &block)
-        super handler, options
+      def initialize(handler, options = {})
+        super
+      end
 
+      def start(&block)
         @server = ::Reel::Server.supervise(options[:host], options[:port], &method(:process))
-        trap(:INT) { @server.terminate; exit }
+        trap(:INT) { shutdown; exit }
         sleep unless options[:nonblock]
+      end
+
+      def shutdown
+        if @server
+          @server.terminate
+          @server = nil
+        end
       end
 
       def process(connection)
