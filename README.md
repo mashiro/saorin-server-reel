@@ -1,6 +1,6 @@
 # Saorin::Server::Reel
 
-TODO: Write a gem description
+reel server adapter for saorin
 
 ## Installation
 
@@ -18,7 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'saorin'
+require 'saorin/server/reel'
+
+class Handler
+  def trape
+    'peropero'
+  end
+end
+
+Saorin::Server.start Handler.new, :host => 'localhost', :port => 8080, :adapter => :reel
+```
 
 ## Contributing
 
