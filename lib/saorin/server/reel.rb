@@ -19,7 +19,11 @@ module Saorin
 
       def start(&block)
         @server = ::Reel::Server.supervise(options[:host], options[:port], &method(:process))
-        trap(:INT) { shutdown; exit }
+
+        (options[:trap_signals] || %w(INT TERM)).each do |sig|
+          trap(sig) { exit }
+        end
+
         sleep unless options[:nonblock]
       end
 
