@@ -18,7 +18,10 @@ module Saorin
       end
 
       def start(&block)
-        @server = ::Reel::Server.supervise(options[:host], options[:port], &method(:process))
+        reel_options = options[:reel_options] || {}
+        server_class = reel_options.delete(:server_class) { ::Reel::Server::HTTP }
+
+        @server = server_class.supervise(options[:host], options[:port], reel_options, &method(:process))
 
         (options[:trap_signals] || %w(INT TERM)).each do |sig|
           trap(sig) { exit }
@@ -35,10 +38,9 @@ module Saorin
       end
 
       def process(connection)
-        while request = connection.request
-          case request
-          when ::Reel::Request
-            response_body = process_request(request.body) if request.method.to_s.upcase == 'POST'
+        connection.each_request do |request|
+          unless request.websocket?
+            response_body = process_request(request.body.to_str) if request.method.to_s.upcase == 'POST'
             response_body ||= ''
             request.respond :ok, DEFAULT_HEADERS.dup, response_body
           end

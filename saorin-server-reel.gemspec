@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'saorin', '>= 0.5.0'
-  spec.add_dependency 'reel'
+  spec.add_dependency 'reel', '>= 0.5.0'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'faraday'
