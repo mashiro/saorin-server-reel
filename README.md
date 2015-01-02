@@ -1,5 +1,8 @@
 # Saorin::Server::Reel
 
+[![Gem Version](https://badge.fury.io/rb/saorin-server-reel.svg)](http://badge.fury.io/rb/saorin-server-reel)
+[![Build Status](https://travis-ci.org/mashiro/saorin-server-reel.svg)](https://travis-ci.org/mashiro/saorin-server-reel)
+
 reel server adapter for saorin
 
 ## Installation
