@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'saorin', '>= 0.5.0'
   spec.add_dependency 'reel', '>= 0.5.0'
-  spec.add_development_dependency 'rake', '~> 10.4.2'
+  spec.add_development_dependency 'rake', '~> 13.0.1'
   spec.add_development_dependency 'rspec', '~> 2.14.1'
   spec.add_development_dependency 'faraday', '~> 0.9.0'
 end
